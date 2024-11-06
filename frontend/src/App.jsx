@@ -12,8 +12,15 @@ export default function App() {
   }, []);
  console.log(dt)
   return (
-    <div>
-     {dt.length}
+    <div >
+      <center>😊 welcome Aman 😊</center>
+      <br></br>
+    {dt.map((v,i)=>(
+      <div key={i}>
+       <b>{v.title}</b>
+       <p>{v.body}</p>
+      </div>
+    ))}
     </div>
   );
 }
