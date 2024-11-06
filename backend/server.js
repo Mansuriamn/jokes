@@ -1,13 +1,18 @@
 const express=require('express')
 const cors=require('cors')
 const dotenv = require('dotenv')
+const path=require('path')
+
 
 dotenv.config();
+
+const _dirname=path.resolve();
 
 const app = express();
 app.use(express.json());
 app.use(cors());  // You can pass options if needed, e.g., cors({ origin: 'http://localhost:4000' })
-
+app.use(express.static(path.join(_dirname,"/frontend/dist"))
+)
 // Sample data
 const home = [
   {
@@ -42,11 +47,15 @@ const home = [
   }
 ];
 
+
 // Get route for posts
-app.get('/', (req, res) => {
+app.get('/post', (req, res) => {
   res.json(home);
 });
 
+app.get('*',(req,res)=>{
+  res.sendFile(path.resolve(_dirname,"frontend","dist","index.html"))
+})
 // Set up the server to listen on port 3000
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
