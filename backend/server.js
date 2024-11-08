@@ -10,7 +10,7 @@ const _dirname = path.resolve();
 
 const app = express();
 app.use(express.json());
-app.use(cors({ origin: 'http://localhost:3000' }));
+app.use(cors());
 app.use(express.static(path.join(_dirname, "/frontend/dist")));
 
 // Create MySQL connection
