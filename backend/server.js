@@ -18,7 +18,7 @@ const db = mysql.createConnection({
   host: process.env.DB_HOST || 'localhost',
   user: process.env.DB_USER || 'root',
   password: process.env.DB_PASSWORD || 'root',
-  database: process.env.DB_NAME || 'con'
+  database: process.env.DB_NAME || 'joke'
 });
 
 // Connect to MySQL
@@ -34,7 +34,7 @@ db.connect((err) => {
 // Get route for posts
 app.get('/post', (req, res) => {
   // Example MySQL query
-  db.query('SELECT * FROM name', (err, results) => {
+  db.query('SELECT * FROM jokes', (err, results) => {
     if (err) {
       console.error('Error executing query:', err);
       res.status(500).json({ error: 'Database query failed' });
